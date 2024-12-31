@@ -58,7 +58,7 @@ SocialHub is a full-stack social networking web application that provides users 
 ### Backend Setup
 1. Navigate to the backend folder:
    ```bash
-   cd backend
+   cd social-media-backend
    ```
 2. Install dependencies:
    ```bash
@@ -66,14 +66,14 @@ SocialHub is a full-stack social networking web application that provides users 
    ```
 3. Start the backend server:
    ```bash
-   npm start
+   node server.js
    ```
    The backend will be running at `http://localhost:5000`.
 
 ### Frontend Setup
 1. Navigate to the frontend folder:
    ```bash
-   cd frontend
+   cd social-media-frontend
    ```
 2. Install dependencies:
    ```bash
@@ -119,9 +119,9 @@ SocialHub is a full-stack social networking web application that provides users 
 ---
 
 ## Contributors
-- **Your Name**
-  - [GitHub](https://github.com/yourusername)
-  - [LinkedIn](https://www.linkedin.com/in/yourusername)
+- **Nishant Baruah**
+  - [GitHub](https://github.com/nishantb66)
+  - [LinkedIn](https://www.linkedin.com/in/nishantbaru/)
 
 ---
 
