@@ -3,6 +3,8 @@
 ## Project Overview
 SocialHub is a full-stack social networking web application that provides users with features like authentication, blogging, creating and liking posts, connecting with friends, real-time chatting, and more. Built using **ReactJS** on the frontend and **ExpressJS** with **MongoDB** on the backend, it offers a seamless user experience with interactive design and robust backend APIs.
 
+  - [Demo Video](https://drive.google.com/file/d/1xndaILrgQ3BtqdvE5t9X28k-nfGYL1hf/view?usp=sharing)
+
 ## Features
 1. **User Authentication:**
    - User registration and login with password encryption.
