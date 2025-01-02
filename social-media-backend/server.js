@@ -13,7 +13,8 @@ dotenv.config();
 const app = express();
 
 // Middleware
-app.use(cors({ origin: "https://social-media-frontend.vercel.app" })); // Replace with your frontend URL
+app.use(cors({ origin: "https://social-media-frontend-tawny.vercel.app
+" })); // Replace with your frontend URL
 app.use(express.json());
 
 // Routes
