@@ -9,7 +9,7 @@ function CreatePost({ fetchPosts }) {
     e.preventDefault();
     try {
       const res = await axios.post(
-        "https://social-media-backend-idoy.onrender.com/api/posts",
+        "https://socialhub-backend-3j7g.onrender.com/api/posts",
         { content, caption },
         {
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
