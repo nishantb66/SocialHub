@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import io from "socket.io-client";
 
-const socket = io("http://localhost:5000"); // Replace with your backend URL
+const socket = io("https://social-media-backend-idoy.onrender.com"); // Replace with your backend URL
 
 function Chat() {
   const [message, setMessage] = useState("");
