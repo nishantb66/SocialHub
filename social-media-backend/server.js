@@ -27,7 +27,7 @@ app.use("/api/blogs", blogRoutes);
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:3000", // Replace with your frontend URL
+    origin: "https://socialhub-frontend.vercel.app", // Replace with your frontend URL
     methods: ["GET", "POST"],
   },
 });
