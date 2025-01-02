@@ -79,27 +79,27 @@ function Dashboard() {
       </video>
 
       {/* Header Section */}
-      <div className="bg-gradient-to-r from-teal-600 to-green-500 py-6 px-10 shadow-md">
-        <div className="flex justify-between items-center max-w-7xl mx-auto">
-          <h1 className="text-4xl font-extrabold text-white tracking-wide">
+      <div className="bg-gradient-to-r from-teal-600 to-green-500 py-6 px-4 md:px-10 shadow-md">
+        <div className="flex flex-col md:flex-row justify-between items-center max-w-7xl mx-auto">
+          <h1 className="text-3xl md:text-4xl font-extrabold text-white tracking-wide">
             👀!💻
           </h1>
-          <div className="flex space-x-6">
+          <div className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-6 mt-4 md:mt-0">
             <div className="welcome-message">
-              <h2 className="text-2xl font-extrabold text-gray-800 tracking-wide">
+              <h2 className="text-xl md:text-2xl font-extrabold text-gray-800 tracking-wide">
                 Welcome, {username || "Guest"}!
               </h2>
             </div>
 
             <button
               onClick={() => navigate("/friends")}
-              className="bg-white text-teal-600 px-4 py-2 rounded-lg shadow hover:scale-105 transition-transform"
+              className="bg-white text-teal-600 px-4 py-2 rounded-lg shadow hover:scale-105 transition-transform w-full md:w-auto"
             >
               Friends
             </button>
             <button
               onClick={() => navigate("/chat")}
-              className="bg-white text-teal-600 px-4 py-2 rounded-lg shadow hover:scale-105 transition-transform"
+              className="bg-white text-teal-600 px-4 py-2 rounded-lg shadow hover:scale-105 transition-transform w-full md:w-auto"
             >
               Community Chat
             </button>
@@ -111,12 +111,12 @@ function Dashboard() {
       <div className="max-w-7xl mx-auto py-10 px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
         {/* Create Post Section */}
         <motion.div
-          className="col-span-2 bg-gray-800 rounded-lg p-6 shadow-lg backdrop-blur-md bg-opacity-90"
+          className="col-span-1 md:col-span-2 bg-gray-800 rounded-lg p-6 shadow-lg backdrop-blur-md bg-opacity-90"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="text-2xl font-bold text-green-400 mb-4">
+          <h2 className="text-xl md:text-2xl font-bold text-green-400 mb-4">
             Create a Post
           </h2>
           {successMessage && (
@@ -146,7 +146,7 @@ function Dashboard() {
             />
             <button
               type="submit"
-              className="bg-gradient-to-r from-green-500 to-teal-400 text-white py-2 px-6 rounded-lg font-bold shadow hover:scale-105 transition-transform"
+              className="bg-gradient-to-r from-green-500 to-teal-400 text-white py-2 px-6 rounded-lg font-bold shadow hover:scale-105 transition-transform w-full md:w-auto"
             >
               Post
             </button>
@@ -160,7 +160,7 @@ function Dashboard() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="text-2xl font-bold text-green-400 mb-4">
+          <h2 className="text-xl md:text-2xl font-bold text-green-400 mb-4">
             Search Posts
           </h2>
           <input
@@ -194,13 +194,13 @@ function Dashboard() {
       <div className="max-w-7xl mx-auto py-6 px-4">
         <button
           onClick={() => setShowMyPosts(!showMyPosts)}
-          className="bg-gradient-to-r from-teal-500 to-green-500 text-white px-6 py-3 rounded-lg shadow hover:scale-105 transition-transform"
+          className="bg-gradient-to-r from-teal-500 to-green-500 text-white px-6 py-3 rounded-lg shadow hover:scale-105 transition-transform w-full md:w-auto"
         >
           {showMyPosts ? "Hide My Posts" : "Show My Posts"}
         </button>
 
         {showMyPosts && (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
             {posts.length > 0 ? (
               posts.map((post) => (
                 <div
@@ -221,3 +221,4 @@ function Dashboard() {
 }
 
 export default Dashboard;
+
