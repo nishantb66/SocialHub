@@ -32,18 +32,25 @@ function Chat() {
     }
   };
 
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      sendMessage();
+    }
+  };
+
   return (
     <div className="flex justify-center items-center min-h-screen bg-gradient-to-br bg-gray-900 via-gray-900 to-black text-gray-100">
-      <div className="w-full max-w-4xl bg-gray-900 shadow-xl rounded-lg p-8 relative">
+      <div className="w-full max-w-4xl bg-gray-900 shadow-xl rounded-lg p-6 sm:p-8 relative">
         <div className="absolute top-4 right-4 text-gray-500 text-sm font-medium">
           Logged in as: <span className="text-green-400">{username}</span>
         </div>
-        <h1 className="text-3xl font-extrabold text-green-600 text-center mb-6">
-        Grab a cup of coffee and start chatting 
+        <h1 className="text-2xl sm:text-3xl font-extrabold text-green-600 text-center mb-6">
+          Grab a cup of coffee and start chatting
         </h1>
 
         {/* Chat Messages */}
-        <div className="chat-box border border-gray-700 rounded-lg p-4 bg-gray-800 h-96 overflow-y-scroll custom-scrollbar shadow-inner">
+        <div className="chat-box border border-gray-700 rounded-lg p-4 bg-gray-800 h-80 sm:h-96 overflow-y-scroll custom-scrollbar shadow-inner">
           {messages.length === 0 ? (
             <p className="text-center text-gray-500 text-lg animate-pulse">
               Be the first to start the conversation!
@@ -71,17 +78,18 @@ function Chat() {
         </div>
 
         {/* Input Section */}
-        <div className="mt-6 flex space-x-4 items-center">
+        <div className="mt-6 flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 items-center">
           <input
             type="text"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
-            className="flex-grow border border-gray-700 bg-gray-800 text-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-green-500 placeholder-gray-400 transition-shadow shadow-lg"
+            onKeyPress={handleKeyPress}
+            className="flex-grow border border-gray-700 bg-gray-800 text-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-green-500 placeholder-gray-400 transition-shadow shadow-lg w-full sm:w-auto"
             placeholder="Type your message..."
           />
           <button
             onClick={sendMessage}
-            className="bg-gradient-to-r from-green-500 to-teal-400 text-white px-6 py-3 rounded-lg font-semibold shadow-lg hover:scale-105 transform transition-transform duration-300"
+            className="bg-gradient-to-r from-green-500 to-teal-400 text-white px-6 py-3 rounded-lg font-semibold shadow-lg hover:scale-105 transform transition-transform duration-300 w-full sm:w-auto"
           >
             Send
           </button>
