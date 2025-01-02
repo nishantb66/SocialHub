@@ -9,7 +9,7 @@ function CreatePost({ fetchPosts }) {
     e.preventDefault();
     try {
       const res = await axios.post(
-        "http://localhost:5000/api/posts",
+        "https://social-media-backend-idoy.onrender.com/api/posts",
         { content, caption },
         {
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
