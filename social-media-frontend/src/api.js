@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // Base API instance
-const API = axios.create({ baseURL: "http://localhost:5000/api" });
+const API = axios.create({ baseURL: "https://social-media-backend-idoy.onrender.com/api" });
 
 // Interceptor to attach the Authorization token to requests
 API.interceptors.request.use((req) => {
