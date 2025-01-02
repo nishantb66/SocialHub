@@ -18,7 +18,7 @@ function Register() {
     e.preventDefault();
     try {
       const res = await axios.post(
-        "https://social-media-backend-idoy.onrender.com/api/auth/register",
+        "https://socialhub-backend-3j7g.onrender.com/api/auth/register",
         formData
       );
       setMessage("User registered successfully✅");
