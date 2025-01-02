@@ -16,7 +16,7 @@ function Login() {
     e.preventDefault();
     try {
       const res = await axios.post(
-        "https://social-media-backend-idoy.onrender.com/api/auth/login",
+        "https://socialhub-backend-3j7g.onrender.com/api/auth/login",
         formData
       );
       localStorage.setItem("token", res.data.token);
