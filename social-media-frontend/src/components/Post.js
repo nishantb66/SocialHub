@@ -3,7 +3,7 @@ import { likePost, unlikePost, addComment, fetchComments } from "../api";
 import { io } from "socket.io-client";
 
 // Establish socket connection
-const socket = io("https://social-media-backend-idoy.onrender.com");
+const socket = io("https://socialhub-backend-3j7g.onrender.com");
 
 function Post({ post, onNotification }) {
   const [likesCount, setLikesCount] = useState(post.likes.length);
