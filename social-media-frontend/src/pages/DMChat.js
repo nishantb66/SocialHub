@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import io from "socket.io-client";
 import { useParams } from "react-router-dom";
 
-const socket = io("http://localhost:5000"); // Replace with your backend URL
+const socket = io("https://socialhub-backend-3j7g.onrender.com"); // Replace with your backend URL
 
 function DMChat() {
   const { recipientUsername } = useParams(); // Get recipient username from URL
