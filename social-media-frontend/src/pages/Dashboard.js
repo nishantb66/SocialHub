@@ -1,5 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { fetchMyPosts, createPost, searchUserPosts } from "../api";
+import {
+  fetchMyPosts,
+  createPost,
+  searchUserPosts,
+  fetchUnreadMessages,
+} from "../api";
 import Post from "../components/Post";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -12,13 +17,14 @@ function Dashboard() {
   const [username, setUsername] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const [showMyPosts, setShowMyPosts] = useState(false);
-
+  const [notifications, setNotifications] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
     const storedUsername = localStorage.getItem("username");
     if (storedUsername) setUsername(storedUsername);
     getMyPosts();
+    getNotifications();
   }, []);
 
   const getMyPosts = async () => {
@@ -27,6 +33,18 @@ function Dashboard() {
       setPosts(res.data);
     } catch (err) {
       console.error("Error fetching posts:", err.response?.data || err.message);
+    }
+  };
+
+  const getNotifications = async () => {
+    try {
+      const res = await fetchUnreadMessages(username);
+      setNotifications(res.data);
+    } catch (err) {
+      console.error(
+        "Error fetching notifications:",
+        err.response?.data || err.message
+      );
     }
   };
 
@@ -107,9 +125,46 @@ function Dashboard() {
         </div>
       </div>
 
-      {/* Dashboard Content */}
+      {/* Notifications Section */}
+      {notifications.length > 0 && (
+        <div className="bg-yellow-100 p-4 rounded shadow mt-6 max-w-7xl mx-auto">
+          <h2 className="font-bold text-yellow-800">Notifications</h2>
+          <ul>
+            {notifications.map((notification) => (
+              <li key={notification._id} className="text-gray-800">
+                New message from{" "}
+                <span className="font-bold">{notification.sender}</span>:{" "}
+                {notification.message}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      {/* Start a DM Section */}
+      <div className="mt-8 max-w-7xl mx-auto">
+        <h3 className="text-2xl font-bold text-green-400 mb-6 text-center">
+          Start a DM
+        </h3>
+        <div className="bg-gray-800 rounded-lg shadow-lg p-6 flex flex-col md:flex-row items-center justify-center md:justify-between space-y-4 md:space-y-0">
+          <input
+            type="text"
+            placeholder="Search for a username..."
+            className="w-full md:w-2/3 bg-gray-700 text-gray-200 border border-gray-600 rounded-lg p-4 focus:ring-2 focus:ring-green-400"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+          <button
+            onClick={() => navigate(`/dm/${searchTerm}`)}
+            className="bg-gradient-to-r from-green-500 to-teal-400 text-white px-6 py-3 rounded-lg font-bold shadow hover:scale-105 transition-transform w-full md:w-auto"
+          >
+            Chat with {searchTerm || "User"}
+          </button>
+        </div>
+      </div>
+
+      {/* Create Post Section */}
       <div className="max-w-7xl mx-auto py-10 px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
-        {/* Create Post Section */}
         <motion.div
           className="col-span-1 md:col-span-2 bg-gray-800 rounded-lg p-6 shadow-lg backdrop-blur-md bg-opacity-90"
           initial={{ opacity: 0, y: 20 }}
@@ -221,4 +276,5 @@ function Dashboard() {
 }
 
 export default Dashboard;
+
 
