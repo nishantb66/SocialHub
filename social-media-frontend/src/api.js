@@ -39,3 +39,11 @@ export const createBlog = (formData) => API.post("/blogs", formData);
 export const fetchAllBlogs = () => API.get("/blogs");
 export const fetchMyBlogs = () => API.get("/blogs/my-blogs");
 
+// Fetch unread messages for the logged-in user
+export const fetchUnreadMessages = (username) =>
+  API.get(`/messages/unread?username=${username}`);
+
+// Mark messages as read
+export const markMessagesAsRead = (messageIds) =>
+  API.put("/messages/mark-read", { messageIds });
+
