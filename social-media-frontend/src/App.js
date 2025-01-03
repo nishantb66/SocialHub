@@ -8,6 +8,7 @@ import Friends from "./pages/Friends";
 import "./index.css";
 import Blogs from "./pages/Blogs";
 import Chat from "./pages/Chat";
+import DMChat from "./pages/DMChat";
 
 
 function App() {
@@ -20,7 +21,8 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/friends" element={<Friends />} />
         <Route path="/blogs" element={<Blogs />} />
-        <Route path="/chat" element={<Chat />} />;
+        <Route path="/chat" element={<Chat />} />
+        <Route path="/dm/:recipientUsername" element={<DMChat />} />
         <Route path="/" element={<Dashboard />} />
       </Routes>
     </Router>
@@ -28,3 +30,4 @@ function App() {
 }
 
 export default App;
+
