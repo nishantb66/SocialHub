@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 function Login() {
   const [formData, setFormData] = useState({ username: "", password: "" });
   const [message, setMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(false); // New state for loading
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -14,6 +15,7 @@ function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true); // Start loading
     try {
       const res = await axios.post(
         "https://socialhub-backend-3j7g.onrender.com/api/auth/login",
@@ -24,12 +26,16 @@ function Login() {
       setMessage("Logged in ✅");
       setTimeout(() => {
         setMessage("");
+        setIsLoading(false); // Stop loading
         navigate("/dashboard");
       }, 2000);
     } catch (err) {
       console.error("Login Error:", err.response?.data?.message || err.message);
       setMessage(err.response?.data?.message || "Invalid credentials ❌");
-      setTimeout(() => setMessage(""), 2000);
+      setTimeout(() => {
+        setMessage("");
+        setIsLoading(false); // Stop loading
+      }, 2000);
     }
   };
 
@@ -92,9 +98,33 @@ function Login() {
           </div>
           <button
             type="submit"
-            className="w-full bg-gradient-to-r from-green-400 to-teal-500 text-white py-3 rounded-lg shadow-lg font-bold hover:from-teal-500 hover:to-green-400 focus:ring-4 focus:ring-green-300 transition duration-300"
+            className="w-full bg-gradient-to-r from-green-400 to-teal-500 text-white py-3 rounded-lg shadow-lg font-bold hover:from-teal-500 hover:to-green-400 focus:ring-4 focus:ring-green-300 transition duration-300 flex items-center justify-center"
+            disabled={isLoading} // Disable button while loading
           >
-            Login
+            {isLoading ? (
+              <svg
+                className="animate-spin h-5 w-5 text-white"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <circle
+                  className="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  strokeWidth="4"
+                ></circle>
+                <path
+                  className="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8v8H4z"
+                ></path>
+              </svg>
+            ) : (
+              "Login"
+            )}
           </button>
         </form>
         <p className="mt-6 text-sm text-center text-gray-400">
@@ -112,3 +142,4 @@ function Login() {
 }
 
 export default Login;
+
