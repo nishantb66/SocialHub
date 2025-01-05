@@ -8,6 +8,7 @@ function Register() {
     password: "",
   });
   const [message, setMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(false); // New state for loading
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -16,6 +17,7 @@ function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true); // Start loading
     try {
       const res = await axios.post(
         "https://socialhub-backend-3j7g.onrender.com/api/auth/register",
@@ -29,34 +31,13 @@ function Register() {
         err.response?.data?.message || err.message
       );
       setMessage(err.response?.data?.message || "Registration failed❌");
-      setTimeout(() => setMessage(""), 2000);
+    } finally {
+      setIsLoading(false); // Stop loading
     }
   };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 text-gray-200 flex flex-col">
-      {/* Navbar */}
-      {/* <nav className="bg-gray-800 py-4 px-6 shadow-lg">
-        <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <h1 className="text-3xl font-extrabold text-green-400">SocialHub</h1>
-          <div className="flex space-x-6">
-            <a href="/dashboard" className="hover:text-green-400">
-              Dashboard
-            </a>
-            <a href="/blogs" className="hover:text-green-400">
-              Blogs
-            </a>
-            <a href="/login" className="hover:text-green-400">
-              Login
-            </a>
-            <a href="/register" className="hover:text-green-400">
-              Register
-            </a>
-          </div>
-        </div>
-      </nav> */}
-
-      {/* Hero Section */}
       <div className="flex-grow flex flex-col md:flex-row items-center justify-center max-w-7xl mx-auto px-6">
         {/* Left Section */}
         <div className="md:w-1/2 flex flex-col items-start space-y-6">
@@ -64,8 +45,8 @@ function Register() {
             Welcome to SocialHub👀
           </h1>
           <p className="text-lg md:text-xl text-gray-400">
-            Connect, share, and grow with our community. Start your
-            journey today and explore more lighter world
+            Connect, share, and grow with our community. Start your journey
+            today and explore a brighter world.
           </p>
           <button
             className="bg-gradient-to-r from-green-500 to-teal-400 text-white py-3 px-8 rounded-lg shadow-lg text-lg font-semibold hover:from-teal-400 hover:to-green-500"
@@ -148,9 +129,33 @@ function Register() {
             </div>
             <button
               type="submit"
-              className="w-full bg-gradient-to-r from-green-500 to-teal-400 hover:from-teal-400 hover:to-green-500 text-white py-3 rounded-lg font-bold shadow-md transition duration-300"
+              className="w-full bg-gradient-to-r from-green-500 to-teal-400 hover:from-teal-400 hover:to-green-500 text-white py-3 rounded-lg font-bold shadow-md transition duration-300 flex items-center justify-center"
+              disabled={isLoading} // Disable button while loading
             >
-              Register
+              {isLoading ? (
+                <svg
+                  className="animate-spin h-5 w-5 text-white"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  ></circle>
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8v8H4z"
+                  ></path>
+                </svg>
+              ) : (
+                "Register"
+              )}
             </button>
           </form>
           <p className="mt-6 text-sm text-center text-gray-400">
@@ -165,7 +170,6 @@ function Register() {
         </div>
       </div>
 
-      {/* Footer */}
       <footer className="bg-gray-800 py-4 text-center text-gray-500 text-sm">
         © {new Date().getFullYear()} SocialHub. All rights reserved.
       </footer>
